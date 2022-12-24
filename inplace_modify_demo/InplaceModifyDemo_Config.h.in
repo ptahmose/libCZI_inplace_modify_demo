@@ -1,0 +1,4 @@
+#pragma once
+
+#define Inplace_Modify_Demo_UNIX_ENVIRONMENT @Inplace_Modify_Demo_UNIX_ENVIRONMENT@
+#define Inplace_Modify_Demo_WIN32_ENVIRONMENT @Inplace_Modify_Demo_WIN32_ENVIRONMENT@
