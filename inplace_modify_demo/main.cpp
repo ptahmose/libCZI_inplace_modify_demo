@@ -31,25 +31,25 @@ int main(int argc, char** _argv)
         }
 
         // create the underlying input-output-stream
-        auto io_stream = CreateInputOutputStreamForFile(cmd_line_options.GetCZIFilenameW().c_str());
+        const auto io_stream = CreateInputOutputStreamForFile(cmd_line_options.GetCZIFilenameW().c_str());
 
         // create the reader-writer-object
-        auto reader_writer = CreateCZIReaderWriter();
+        const auto reader_writer = CreateCZIReaderWriter();
 
         // open the CZI-file
         reader_writer->Create(io_stream);
 
         // read the metadata-segment
-        auto metadata_segment = reader_writer->ReadMetadataSegment();
+        const auto metadata_segment = reader_writer->ReadMetadataSegment();
 
         // construct the metadata-object from the metadata-segment (use this to query information if required)
-        auto metadata = metadata_segment->CreateMetaFromMetadataSegment();
+        const auto metadata = metadata_segment->CreateMetaFromMetadataSegment();
 
         // now, create a metadata-builder-object from the XML
-        auto metadata_builder = CreateMetadataBuilderFromXml(metadata->GetXml());
+        const auto metadata_builder = CreateMetadataBuilderFromXml(metadata->GetXml());
 
         // modify a node
-        auto comment_node = metadata_builder->GetRootNode()->GetOrCreateChildNode("Metadata/Information/Document/Comment");
+        const auto comment_node = metadata_builder->GetRootNode()->GetOrCreateChildNode("Metadata/Information/Document/Comment");
         comment_node->SetValue("*** modified by inplace_modify_demo ***");
 
         // and now, write the modified metadata into the file
